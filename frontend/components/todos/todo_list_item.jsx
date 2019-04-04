@@ -24,14 +24,17 @@ class TodoListItem extends React.Component {
     }
     render() {
         return (
-            <div>
-                <div>
-                    {this.props.todo.title}
+            <div className="todo-list-item">
+                <div className="todo-info">
+                    <div>
+                        <h3 className="todo-title">{this.props.todo.title}</h3>
+                    </div>
+                    <div>
+                        <p>{this.props.todo.body}</p>
+                    </div>
                 </div>
-                <div>
-                    {this.props.todo.body}
-                </div>
-                <div>
+
+                <div className="todo-actions">
                     <button onClick={this.toggleTodo}>
                         {this.props.todo.done ? "Undo" : "Done"}
                     </button>
