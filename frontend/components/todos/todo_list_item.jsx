@@ -23,24 +23,33 @@ class TodoListItem extends React.Component {
         this.props.removeTodo(this.props.todo);
     }
     render() {
+
+        let checkMark = (
+            <div className="check-mark">
+                <img src="https://img.icons8.com/color/48/000000/checkmark.png"></img>
+            </div>
+        );
         return (
             <div className="todo-list-item">
-                <div className="todo-info">
-                    <div>
-                        <h3 className="todo-title">{this.props.todo.title}</h3>
+                {this.props.todo.done ? checkMark : null}
+                <div className="info">
+                    <div className="todo-info">
+                        <div>
+                            <h3 className="todo-title">{this.props.todo.title}</h3>
+                        </div>
+                        <div>
+                            <p>{this.props.todo.body}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>{this.props.todo.body}</p>
-                    </div>
-                </div>
 
-                <div className="todo-actions">
-                    <button onClick={this.toggleTodo}>
-                        {this.props.todo.done ? "Undo" : "Done"}
+                    <div className="todo-actions">
+                        <button onClick={this.toggleTodo}>
+                            {this.props.todo.done ? "Undo" : "Done"}
+                        </button>
+                        <button onClick={this.removeTodo}>
+                            Delete
                     </button>
-                    <button onClick={this.removeTodo}>
-                        Delete Todo
-                    </button>
+                    </div>
                 </div>
             </div>
         )

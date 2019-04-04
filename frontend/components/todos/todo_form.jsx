@@ -7,7 +7,8 @@ class TodoForm extends React.Component {
         this.state = {
             title: "",
             body: "",
-            done: false
+            done: false,
+            error: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -15,12 +16,19 @@ class TodoForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let todo = Object.assign({}, this.state, {id: uniqueId()});
-        this.props.receiveTodo(todo);
-        this.setState({
-            title: "",
-            body: "",
-            done: false
-        })
+        
+        if (todo.title === "" || todo.body === "") {
+            this.setState({error: "Title and body must be filled"})
+        } else {
+            this.props.receiveTodo(todo);
+            this.setState({
+                title: "",
+                body: "",
+                done: false,
+                error: ""
+            })
+        }
+        
     }
 
     update(field) {
@@ -32,6 +40,9 @@ class TodoForm extends React.Component {
     render() {
         return (
             <div className="todo-form">
+                <div className="error">
+                    {this.state.error}
+                </div>
                 <form className="form" onSubmit={this.handleSubmit}>
                     <input className="form-input" type="text" 
                         value={this.state.title} 
