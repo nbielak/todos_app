@@ -15,4 +15,4 @@ export const receiveTodo = todo => ({
 export const removeTodo = todo => ({
     type: REMOVE_TODO,
     todo
-})
+});
